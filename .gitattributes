@@ -1,0 +1,13 @@
+* text=auto
+*.rs text
+*.toml text
+*.md text
+*.ps1 text
+*.iss text
+*.rc text
+*.h text
+*.manifest text
+*.bin binary
+*.mmdb binary
+*.ico binary
+*.ttf binary

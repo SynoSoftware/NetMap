@@ -1,0 +1,5 @@
+/target/
+/artifacts/
+/assets/country.mmdb
+/assets/*.gz
+*.pdb

@@ -1,0 +1,30 @@
+[package]
+name = "netmap"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+description = "Lightweight native Windows map of your PC's TCP/UDP connections and live traffic"
+repository = "https://github.com/SynoSoftware/NetMap"
+publish = false
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62.2", default-features = false, features = [
+    "Win32_Foundation",
+    "Win32_System_LibraryLoader",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[build-dependencies]
+embed-resource = "3.0.12"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "debuginfo"
+panic = "abort"
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+
+[lints.clippy]
+undocumented_unsafe_blocks = "deny"

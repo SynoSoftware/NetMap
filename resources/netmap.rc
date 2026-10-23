@@ -1,0 +1,38 @@
+#include <windows.h>
+#include "ids.h"
+#include "version.h"
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "netmap.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION NETMAP_VERSION_NUMBERS
+PRODUCTVERSION NETMAP_VERSION_NUMBERS
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "NetMap development scaffold"
+            VALUE "FileVersion", NETMAP_VERSION
+            VALUE "InternalName", "netmap"
+            VALUE "OriginalFilename", "netmap.exe"
+            VALUE "ProductName", "NetMap"
+            VALUE "ProductVersion", NETMAP_VERSION
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1200
+    END
+END
+
+// Temporary native bootstrap, replaced by the ordinary map host during stage 1.
+IDD_BOOTSTRAP DIALOGEX 0, 0, 300, 110
+STYLE DS_SHELLFONT | DS_CENTER | WS_OVERLAPPEDWINDOW
+CAPTION "NetMap - development scaffold"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT "Project scaffold ready.\n\nThe map, connection collection and Settings are not implemented yet.", IDC_BOOTSTRAP_NOTICE, 12, 12, 276, 86, SS_NOPREFIX
+END
