@@ -1,7 +1,8 @@
 # NetMap software specification
 
 Status: planned product; build/installer scaffold present. Written 2026-10-22;
-reviewed 2026-10-23. Map, collection and Settings are not implemented yet.
+reviewed 2026-10-23. World rendering and basic navigation are implemented;
+live TCP plotting is integrated; full collection and map acceptance remain in progress.
 
 This document owns intended product behavior, scope, technical constraints and
 acceptance criteria. It does not claim that implementation or platform checks
@@ -13,6 +14,228 @@ Those documents own module organization, native mechanisms and working
 procedures; this specification owns the result they must deliver.
 The [Settings specification](settings.md) owns the dialog's content tree, search,
 resets, editing behavior and Goz shell porting requirements.
+
+## Implementation status
+
+Implementation is authorized through both planned stages, in their stated order.
+Current implementation ownership is split into independent batches; the lead
+alone builds and runs native checks against stable inputs. Shared contracts change
+only through the lead. Architectural prerequisites settle before dependent work.
+At each completed stage, one independent adversarial reviewer challenges its
+requirements, execution paths, integration, ownership and material complexity.
+Compatible fixes return to the same reviewer within affected scope; widen only
+for concrete evidence. Independent implementation may continue while reviewed
+inputs stay stable. Reserve `code-review deep` and its six specialists for the
+whole integrated plan, then assign fixes to existing owners and rerun affected
+checks. Retain concise review outcomes and unresolved risks here.
+
+| Batch | Exclusive editing owner and files | Dependency / completion evidence |
+| --- | --- | --- |
+| Native collection correctness | Retained `etw_reference` agent: `src/connections.rs`, `src/connections/`, `src/app/work/trace_checks.rs`, `tests/native-trace.ps1` | Keep Snapshot/Publication and worker-launch contracts unchanged unless agreed with lead. Resolve System-context receive evidence without guessed process ownership; exact bounded native traffic and lasting identity/conservation checks. |
+| Matched reference fixture | Retained `reference_baseline` agent: disposable `V:/temp/netmap-reference-20261023-a71c/` only | Repair the loaded-scene/fixed-extent fixture and provide one build/run handoff. No edits to TinyTorrent2, no operation of its running engine, no builds or native runs. |
+| Application and native presentation integration | Lead: Application/Work/Host, persistence, resources, project docs and packaging scripts | Own shared interfaces, Release placement correction, integration, sole builds and all native execution. |
+
+The collection owner must not edit application/hosting contracts, and the lead
+must not edit collection-owned files while that batch is active. Reference work
+has no product-source dependency. Reuse each agent for related follow-ups.
+
+The native graphics/collection proof in Development step 1.1 remains open while
+independent map/navigation and location work progresses through steps 1.2–1.4.
+The lead owns implementation, integration and all builds.
+Reference-baseline investigation is read-only delegated work; it may inspect
+existing captures/binaries and their launch contracts, but does not edit or build
+TinyTorrent2, operate its running instance or use its normal data profile.
+ETW source investigation may prepare a disposable native probe under
+`V:/temp/netmap-etw-proof/`; the lead alone builds/runs it. It is proof tooling,
+not a second application collector, and must leave only its own trace resources
+and preserve its result/schema evidence when retired.
+
+Step 1.1 completes only after recording the matched source baseline, a working
+native GPU window with DPI/resize/close behavior, and observed TCP/UDP IPv4/IPv6
+events, attribution, measured bytes, privilege behavior and owned-session cleanup.
+The map port may proceed independently of a collection limitation, but dependent
+live behavior must wait for its source proof. Desktop hosting remains stage 2.
+Current evidence: [bootstrap checks](../verification/scaffold.md) and the
+native hardware GPU window, off-UI geography load and viewport/decoder tests in
+[native source evidence](../verification/native-source.md). Full-map memory
+acceptance and mixed-DPI checks remain unverified.
+[Native source proof](../verification/native-source.md) confirms the elevated
+loopback ETW source and an ordinary-token access denial; the remaining source
+gates and matched loaded/4K reference baseline are not yet complete. An isolated
+empty-map reference has drawn successfully; it is not a loaded-scene comparison.
+The geography/viewport port and optimized country outlines are present, including
+shared borders, bounded pieces, cropped fill/realization caches and the shared
+rebuild allowance. A native capture shows the world; the latest ordinary suite
+passes 86 tests with nine explicit native/network/storage checks ignored by default.
+Basic navigation now includes anchored wheel/double-click zoom, mouse pan,
+capture/cancel handling, keyboard zoom/pan/Fit and bottom-centre native controls.
+Live TCP destinations and guides now render through the ported grouping model.
+Basic hover/selection, arrow inspection/reveal, inspected-place zoom, descriptions
+and a native tooltip are implemented. The map queries Windows contrast/motion
+settings; High Contrast uses system background/text colours and solid ink, while
+reduced motion uses static marks and timed removal. Native renderer fixtures
+verify mixed idle/active sprites, normal pulse scheduling, static deadlines,
+expired selected hit rejection and a temporarily undrawable view. The live
+inspection journey verifies posted key-message routing, native description text,
+zoom and Escape clearing. Source Light/Dark palettes, native Windows accent
+colors, country activity shading, retained selection-ring realizations and the
+saved speed corner are implemented. The shared native renderer fixture verifies
+Light/Dark background readback, active/idle country shading and highlight expiry;
+owned app captures show all three speed positions and a compact fitted window.
+The retained display review is clean at
+`V:/temp/netmap-map-display-review/review.md`. Physical input, tooltip display,
+screen-reader use and matched visual/resource parity remain acceptance work; see
+[map interaction evidence](../verification/map-interaction.md). Full ETW collection
+also remains unfinished. Unused
+ported records await their remaining consumers, so warning-free Clippy is not yet
+an accepted gate.
+
+The native HWND accessibility proxy now exposes a stable map name/ID, pane role,
+keyboard focusability and the current inspection/coverage HelpText. An independent
+UIA client verified selected and cleared states; this does not establish screen-
+reader or physical-input acceptance. Normal-window placement now loads off-UI
+before first show and saves independently of Settings. Its native restart journey
+passed normal/maximized bounds, minimized-close restoration and off-screen
+recovery; see [window evidence](../verification/window.md). Formal review of this
+retained implementation is deferred to the substantial deliverable boundary.
+The first Release placement run exposed zero native flags on minimized close;
+the lead's WM_SIZE-based restoration correction is implemented and awaits the
+combined build/native rerun. Earlier Debug success is not Release acceptance.
+
+Bounded native checks for this milestone answer whether the specified ETW source
+can observe controlled loopback/external traffic under the current rights, and
+whether the required Direct2D/D3D/DXGI mechanisms work on this Windows build.
+Connections owns the source check and Renderer owns the graphics check. Stop each
+check once its required events/resource lifecycle are demonstrated or a concrete
+platform failure is recorded; do not introduce a second collector or renderer.
+
+The earlier plan review is retained at
+`V:/temp/inetmap-rust-map-review-20261023-01a1687c/review.md`. New stage reviews
+must record their scope and result here before dependent stages are accepted.
+The first native-foundation review is at
+`V:/temp/netmap-native-foundation-review/review.md`. Its two reply-lifetime
+findings have been corrected and its independent delta review is clean. The new
+world-rendering review at `V:/temp/netmap-world-review/review.md` is clean after
+correcting swap-chain retirement order. Navigation review at
+`V:/temp/netmap-navigation-review/review.md` is clean after capture-cursor and
+Fit-focused wheel corrections. Native navigation evidence is recorded with the
+source proof. The lead continues as the sole product editor/builder; read-only
+helpers may inspect dataset/HTTP contracts for the next location work.
+City data now downloads/unpacks/validates/installs through registered workers,
+with native Location menu commands and status-only progress. Read-only mapped
+country/city readers, immutable-file guards and replacement/recovery are present.
+Native download/cancel/restart and blocked-replacement/backup recovery checks
+passed; full local lookup integration awaits the connection/model work.
+City source review and its fixture/storage/cleanup delta are clean at
+`V:/temp/netmap-city-review/review.md`. Native proof scripts validate HWND process
+ownership and retire handles between runs before cleanup can post Close.
+
+Settings is now being implemented by the lead in its planned owners:
+`app/settings.rs` (preferences, defaults, draft validation, catalogue and save
+coordination), its private native dialog/storage modules, and Host's narrow
+native dialog/control operations. There is one accepted save at a time; the
+registered worker finishes a save independently of dialog cancellation. Startup
+reads preferences on the geography worker before dependent origin work exists.
+The native shell and three lazy pages are present, with search/reset/Apply/OK
+paths. Independent six-pass review and its corrective delta are clean at
+`V:/temp/netmap-settings-review/review.md`. The owned native journey passes
+search, retained raw drafts, hidden/same-focus validation, page/global reset
+with Cancel, Apply/OK, failed-save retry, queued close/reopen, real process
+restart and repeated resource-lifetime checks. See
+[Settings evidence](../verification/settings.md) for exact native scope and
+resource samples. Actual keyboard input still needs a foreground-capable
+desktop; physical mixed-DPI/work-area transitions, High Contrast/UIA, attribution link action and
+precisely held-pending save timing remain acceptance work. Connection effects
+and speed/detail consumers remain incomplete; the Settings
+shell is not full stage 1 acceptance. Origin startup must consume the accepted
+preference read before deciding whether automatic discovery is permitted;
+loading or failed reads cannot establish that a saved Manual choice is absent.
+Automatic/manual origin is integrated. `app/origin.rs`
+owns choice transitions, generations, dataset matching, debounce and retry;
+the existing Work owner runs one bounded origin/request/watch worker. Both route
+and interface notifications retain a coalesced invalidation outside the reply
+queue and invalidate stale origin facts before completions are accepted. Native
+registrations and potentially waiting cancellation belong to that worker.
+Manual mode and failed preference reads start no discovery. Dataset replacement
+reuses the current public address for local lookup. Map rebasing ends the drag
+at its current view and uses the existing Host capture/update path. A 30-second
+whole discovery deadline uses the same endpoint timer as debounce/backoff.
+Independent six-pass review and its corrective delta are clean at
+`V:/temp/netmap-origin-review/review.md`. The owned native journey verifies real
+public-address discovery/local country lookup, manual supersession, restart and
+clean close. See [Origin evidence](../verification/origin.md) for exact scope,
+the restricted-environment failure and remaining network-change/native-view
+gates. Settings work-area fitting and native narrow/compact page reflow are now
+integrated, with clean source review at
+`V:/temp/netmap-settings-layout-review/review.md`. The combined isolated journey
+at `V:/temp/netmap-origin-layout-native-final/` verifies initial containment,
+simulated compact layout, Settings persistence/validation, real origin lookup,
+manual supersession and close/restart. The fixture does not change display
+settings; physical mixed-DPI, keyboard and accessibility gates remain open.
+This is not stage 1 acceptance.
+Country acquisition for a fresh checkout is now verified through the pinned
+manifest and isolated preparation check. Fit uses a labelled native button, so
+no separate glyph font is required. Final distribution and resource acceptance
+remain open.
+
+Connections now has its planned pure model and private native TCP table reader.
+The lead remains sole editor/builder. The model gives each observation an
+application-owned identity, retains completed TCP/expired UDP through publication
+and establishment/activity needs, and accounts attributed plus unattributed
+bytes before any snapshot coalescing. Source timestamps may correlate only
+unambiguous lifetimes; the unusable native connid is not substituted with the
+tuple. Table captures retain their interval bounds and partial reads do not
+establish absence. This is work in progress, not production collection proof.
+Fixed-clock tests cover same-tuple reconnects, late/equal timestamps, startup
+overlap, UDP inactivity, visibility boundaries and byte conservation. The owned
+native loopback check finds both idle TCP endpoints in IPv4/IPv6 with correct
+PIDs and excludes listeners. See [Connections evidence](../verification/connections.md)
+for the exact scope and remaining integration gates.
+The pure-model review and its merged deltas are retained at
+`V:/temp/netmap-connections-model-review/review.md`; current source review is
+clean, as is the separate table-reader review at
+`V:/temp/netmap-connections-tables-review/review.md`. Final formatting and the
+ordinary/native tests passed; Clippy still reports unused code awaiting its
+production consumers. Bounded IPv4/IPv6 owner-PID captures retain normalized
+endpoints and partial-read evidence. The owned ETW adapter is present, using
+verified v2 event prefixes, one raw-QPC clock, a bounded nonwaiting callback queue
+and owned controller/consumer lifetimes. Work now registers aggregation and
+consumption separately; native consumer ownership passes directly between
+workers. Native process censuses use Windows sequence numbers and conservative
+capture bounds, preserving PID-reuse uncertainty for delayed events. Coalesced
+snapshots reach Application; a separate registered worker caches current-version
+locations and prepares map groups. Collection timestamps survive lookup and UI
+delivery, so late results cannot restart establishment age. Unchanged display
+facts reuse the prepared model and retained geometry.
+
+The live normal-window path is observed on an ordinary token, including a
+controlled external TCP handshake, repeated publication, country destinations,
+great-circle guides, marker sprites and clean close. ETW access was denied:
+the UI explicitly reports table-only TCP observations with unavailable rates
+and UDP. This is an intermediate coverage state, not the final product scope.
+The production ETW consumer now decodes process start/end/rundown evidence and
+binds it to sequence-number censuses through one process registry. Loss boundaries
+survive queued delivery and keep uncertain TCP bytes unattributed. Application
+reports coverage, directional rate availability and attribution uncertainty.
+The retained source review is clean at
+`V:/temp/netmap-process-source-review/review.md`. The latest ordinary suite passes
+86 tests, with nine explicit native checks ignored. User-approved elevated runs
+passed both bounded production trace checks, including exact own/short-child
+IPv4/IPv6 directional bytes, raw QPC and cleanup. Passive physical traffic exposed
+System-context incoming TCP events; unique temporal endpoint/process correlation
+is now implemented, with reuse/loss/conservation regressions and a passing native
+collector rerun. That rerun had a different, low traffic workload and does not
+prove high-load attribution. Ordinary execution is still denied ETW access.
+Scoped-event correlation and the remaining source
+acceptance gates are still unfinished. See
+[Connections evidence](../verification/connections.md) for the exact proof limits.
+The user's reported NetMap access-error dialog was confirmed in Windows events
+for the earlier 16:17 Settings run. An isolated empty-buffer DrawTextW call
+reproduces the pointer-0x2 access violation; the current binary's existing guard
+prevents it, and its repeated native journey exits normally. Exact attribution
+of the historical exception remains inferred without its stack. A native
+empty/populated/cleared-label regression was added; see
+[crash evidence](../verification/crash-20261023.md).
 
 ## Target
 

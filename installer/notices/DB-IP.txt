@@ -1,0 +1,10 @@
+IP Geolocation by DB-IP
+https://db-ip.com
+
+NetMap bundles DB-IP IP to Country Lite and can download DB-IP IP to City Lite.
+Both datasets are licensed under the Creative Commons Attribution 4.0
+International License:
+https://creativecommons.org/licenses/by/4.0/
+
+Dataset format and monthly downloads:
+https://db-ip.com/db/lite.php

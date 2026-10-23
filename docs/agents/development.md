@@ -72,6 +72,17 @@ reliability take precedence over brevity.
 
 ## Change and verification
 
+Work in larger, coherent coding batches that advance the complete feature.
+Keep the bigger picture in view and spend effort on the implementation that
+will remain. Use engineering judgment to choose batch boundaries and when to
+check: a check should resolve uncertainty or guide the next implementation
+decision.
+Keep coupled work with one implementer, resolve routine choices autonomously,
+and preserve concise current state for resumption. Formal review belongs at
+substantial deliverable boundaries, with a final review of the integrated result;
+subsequent reviews cover fixes and affected contracts. Continue authorized work
+until complete or a concrete blocker requires user input.
+
 1. **Trace first.** State assumptions and an observable completion condition.
    Identify the affected state, control, work and resource owners and follow
    their callers through updates and shutdown before editing. Resolve material
@@ -83,19 +94,25 @@ reliability take precedence over brevity.
    Use patch edits that preserve existing encoding/BOM. Follow `.gitattributes`
    when it owns text normalization; otherwise preserve existing line endings
    and use LF for new files.
-3. **Review the result.** Trace correctness and failure/lifetime paths, then
+3. **Review the lasting result.** Review only code that will remain, at coherent
+   feature boundaries. Skip review of code being replaced or deleted. Trace
+   correctness and failure/lifetime paths, then
    ownership and simplicity, then reread the corrected result for naming and
    comments. Recheck findings after fixes. Finish when affected paths are
    accounted for and every remaining abstraction and state has a concrete need.
 4. **Verify the actual change.** Use existing evidence and the smallest check
-   that resolves each remaining uncertainty. Finish edits and source review
-   before compiling unless later work needs a compiler/runtime answer. Reuse
+   that resolves each remaining uncertainty. Check during a batch when a
+   compiler/runtime answer guides the work; otherwise verify the integrated
+   batch instead of repeatedly checking fragments. Reuse
    current outputs; documentation-only changes need no build. Use the repository's
    actual manifest, toolchain and scripts once present rather than importing
    TinyTorrent2's build commands or creating speculative tooling.
 
-Each new test names a specific failure and asserts the observable outcome it
-would change. Prefer pure tests for numerical parity, aggregation, transitions,
+Write tests only for lasting regressions or invariants. Skip unit tests for
+provisional code or interfaces that will soon change; prune redundant tests
+that establish no useful behavior. Each retained test names a specific failure
+and asserts the observable outcome it would change.
+Prefer pure tests for numerical parity, aggregation, transitions,
 effect ordering and stale replies; use native checks for uncertain platform,
 input, paint and lifetime behavior. Avoid tests that mirror implementation or
 pin incidental wording. Run formatting, Clippy and focused tests for Rust changes;

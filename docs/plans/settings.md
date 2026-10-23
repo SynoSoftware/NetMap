@@ -1,6 +1,9 @@
 # NetMap Settings specification
 
-Status: planned, 2026-10-23. The Settings dialog is not implemented yet.
+Status: implementation in progress, 2026-10-23. The native shell, three lazy
+pages, preference/draft rules and asynchronous recoverable persistence are
+present. Native journey, layout/accessibility and runtime-effect acceptance
+remain open; see the software specification's current implementation status.
 
 This specification owns Settings content, search, reset, editing and command
 behavior. The [map specification](rust-map.md) owns the settings' effects on the
