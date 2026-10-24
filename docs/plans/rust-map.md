@@ -1,8 +1,9 @@
 # NetMap software specification
 
-Status: planned product; build/installer scaffold present. Written 2026-10-22;
-reviewed 2026-10-23. World rendering and basic navigation are implemented;
-live TCP plotting is integrated; full collection and map acceptance remain in progress.
+Status: Stage 1 acceptance remains open; Stage 2 implementation is authorized and underway.
+The native map, Settings, local geolocation and TCP/UDP collector are present;
+source privilege restrictions and remaining visual/resource gates are recorded
+below. Written 2026-10-22; reviewed 2026-10-23.
 
 This document owns intended product behavior, scope, technical constraints and
 acceptance criteria. It does not claim that implementation or platform checks
@@ -17,12 +18,465 @@ resets, editing behavior and Goz shell porting requirements.
 
 ## Implementation status
 
-Implementation is authorized through both planned stages, in their stated order.
+Current batch (2026-10-24): collector token queries and renderer allocation
+changes are built together. Formatting and all-targets Release Clippy pass;
+preserved optimized test 5B6F4ADF passes 107 ordinary tests, with 27 native opt-ins
+ignored. The combined all-targets Release build takes 138 seconds. The retained
+native regression covers the actual current-token identity/elevation query;
+TokenElevation uses a direct typed four-byte record, while variable-length
+TokenLogonSid retains aligned storage. Earlier failed builds and native error-24
+evidence remain in [connection verification](../verification/connections.md#remaining-integration).
+No authorization policy changes.
+
+Production Release A461327D is 1,543,680 bytes. Its byte-identical EXE/SCR payload,
+ZIP and compiled Inno Setup installer are in
+`artifacts/packages/20261024-110358-559-292bc7d0/`; the installer is built, not
+installed. The normal production-feature package build and all-targets build
+have distinct hashes; broker run d uses private all-targets product 1EF9FF0A and
+test 5B6F4ADF. The user approves the waiting consent prompt; run d starts and
+proves measured native cells, then its saver is dismissed. Corrected wrapper run
+f on packaged A461327D proves eleven seconds of saver-only subscription and a
+natural collector exit 7.13 seconds after the saver exits. Its replacement-source
+assertion stops at initial incomplete coverage; the fixture now waits within its
+existing bound. Preserved test 7925B3A0 passes 107 ordinary tests. Subsequent run g
+exposes test-only Work retirement waiting on deliberately retained UI facts.
+The fixture correction keeps all retirement join handles with the continuing
+Work owner while retiring the old source; production behavior is unchanged.
+Optimized test AA0DEEBB builds in 119 seconds and passes all 107 ordinary tests;
+formatting/all-targets Release Clippy pass. It is preserved in
+`V:/temp/netmap-broker-retirement-20261024/`. This correction still needs its
+focused native run; full broker acceptance is open. Packaged A461327D is unchanged.
+
+User authorization covers the bounded allocation/collector/broker journeys and
+brief attended screen saver/desktop checks, with prior saver settings restored.
+Raw/Collector checks already pass on preserved test 5680939D; zero-loss native
+allocation traces identify D2D group-layer, image/effect and gradient realization
+costs. See [allocation evidence](../verification/matched-map.md#resumed-native-allocation-attribution-2026-10-24).
+Reviewed routes.rs 68EBFE79 tightens conservative group-layer bounds and shares
+identical halo gradient stops at their existing owner. The ordinary-desktop
+measurement estimates 159.15 MiB map contribution versus the prior native
+183.67–184.39 MiB, but still exceeds the reference's 144.05–144.92 MiB. Repeated
+matched-pair acceptance remains open. Changed-renderer Navigation/Temporal pass
+on 5B6F4ADF outside the command sandbox. Next: finish the focused broker
+correction and remaining memory acceptance, then the authorized attended
+journeys. Additional review rounds or test infrastructure require user approval.
+Lead remains the single builder/process runner. Neither stage is accepted.
+The user requests minimal screen disruption: keep builds/code checks in the
+background, use off-screen rendering where the check remains equivalent, and
+batch the necessary attended desktop/saver/input journeys into brief announced
+sessions. Preserve their acceptance criteria; avoid visible test launches while
+the user is working. All owned native test windows have exited.
+Current acceptance is blocked pending the user's availability for that brief
+attended batch. The user explicitly requests waiting until they say they are
+ready; do not launch desktop checks before then. Resume with preserved test
+AA0DEEBB and packaged A461327D, not another build or broad review. The memory
+shortfall and unverified physical/platform cases remain incomplete.
+
+Earlier release/package checkpoint: A60AF2EB (1,540,608-byte
+EXE and byte-identical SCR). Settings accessibility passes all seven checkpoints
+after a native Categories label fixes the stock provider's mistaken Search-label
+association. The ineffective dialog COM annotation is removed. See
+[Settings evidence](../verification/settings.md#native-accessibility-provider-check).
+Focused resource follow-ups pass on unchanged A60AF2EB. Twenty visible Settings
+reopen cycles hold process handles at 482; GDI stays within 24–25 and USER within
+42–44 during measured cycles. This does not reproduce sustained per-dialog GDI
+growth. Private memory rises by 3.57 MiB through final idle with changing live
+facts, so allocation ownership and leak freedom remain unproved. See
+[Settings lifetime evidence](../verification/settings.md#settings-reopen-resource-follow-up).
+A separate single-query city-profile run identifies both exact MMDB mappings:
+country has 466,944 resident bytes and city 966,656, independently of their
+virtual/file lengths. The wrapper now distinguishes documented file mappings
+from pagefile/physical mappings; the earlier error-1006 records stay unavailable.
+Both wrapper-only changes have clean focused review; no Rust rebuild is needed.
+The final ordinary timing follow-up passes Navigation on preserved optimized
+test 5680939D: 24 owned-dispatch-to-last-matching-Present-return samples have
+median 33.017 ms, nearest-rank p95 49.747 ms and worst 66.418 ms. This includes
+the existing message pump and explicit repaint, excluding physical input, OS
+input queues and compositor/display latency; it is not a matched-source latency
+comparison. See [timing scope](../verification/matched-map.md#owned-navigation-input-timing-2026-10-24).
+One optimized build takes 76 seconds and Navigation 14.60 seconds, within the
+five-minute estimate. Formatting, all-targets Release Clippy and focused timing
+review pass. Temporal/source matrices are not repeated; cfg(test)-only changes
+leave product/package A60AF2EB unchanged.
+The corrected dynamic/temporal map journeys pass on preserved optimized test
+7142D77A; root inspected all 22 correlated full-target images. Actual dataset
+rollback/retry, open-Settings availability changes, held-install fallback and
+canonical/backup restart all pass on preserved test 3126C73B. See
+[map evidence](../verification/matched-map.md#native-dynamic-navigation-and-temporal-presentation-2026-10-24)
+and [transaction evidence](../verification/stage2.md#dataset-transaction-lifetime-and-settings-availability).
+
+Scoped final-product accounting completes 19 phases, both parents and three
+two-display Preview lifecycles, all exiting 0. Their original mapping-residency
+queries remain unavailable; the separate follow-up above supplies one later
+scoped observation. Changing live facts and cold/warm differences prevent
+isolated allocation or leak-freedom claims. See
+[component accounting](../verification/matched-map.md#scoped-ordinary-product-component-accounting-2026-10-24).
+Formatting, final all-targets Release Clippy and native corrections pass. The
+106 ordinary tests pass on 3126C73B; the later correction changes capture
+instrumentation and a native label, with no pure-rule change. Both optimized
+test builds take 77 seconds; final product compilation takes 45.28 seconds.
+Focused source reviews and affected correction deltas are clean. Original
+provider failures, stale-buffer captures and hidden-start accounting failure
+are preserved separately; no failed source matrix is retried.
+
+The ordinary profiler follow-up runs installed VSDiagnostics help successfully,
+but finds no supplied native-memory CLI configuration or documented snapshot
+recipe. The native heap UI path remains unverified and needs a supported
+interactive session; no profiler session or IDE is launched. Direct3D 11's
+documented device-loss test forces an adapter TDR, affecting other Direct3D apps;
+no scoped device-removal hook is established for NetMap's D3D11 device. Actual
+device-loss acceptance remains deferred, not replaced by a fake HRESULT test.
+See [remaining platform proof](../verification/stage2.md#deferred-unattended-tooling-boundaries).
+The remaining acceptance depends on the deferred allocation/collector work and
+attended Windows behavior, with scoped ordinary measurement gaps retained.
+The approximately 184 versus 144–145 MiB isolated map-contribution objective is
+still unmet. Both stages remain incomplete; no UAC, installation or attended
+step has run. Continue from the deferred checklist, not another unchanged map
+or source sweep. The built installer/ZIP is in
+`artifacts/packages/20261024-073148-008-8c5a63d2/`; it was inspected, not installed.
+
+Historical unattended checkpoint (2026-10-24): goal blocked pending the user's return or
+an authorized environment change. The same deferred elevation/attended
+dependencies remain across the resource/timing, profiler-boundary and current
+checkpoint turns. No owned app, profiler or build remains running. Existing
+ordinary-token evidence still reports collector access denied (error 5), and
+the lower-map-memory objective is unmet. Resume with the consolidated
+[deferred checklist](../verification/stage2.md#deferred-until-the-user-returns),
+starting with allocation attribution and the real elevated collector/broker
+journey. Preserve all failed source cases and scoped evidence; neither stage
+is accepted and no requirement is waived. Do not restart unchanged matrices,
+repeat integrated review or manufacture substitute passes while these
+dependencies are unchanged.
+
+The preceding unattended lifetime batch passes on preserved
+optimized test 61160460 in `V:/temp/netmap-lifetime-20261024-d/`. Actual Desktop
+disable-before-delivery and repeated recovery coalescing pass at 128x, using real
+discovery, preference saves and WorkerW parenting. Accepted pending-save Host
+close passes for normal commit and real five-second fallback; last committed
+preferences survive the latter byte for byte. The affected Settings Reopen case
+also passes. See [Desktop evidence](../verification/stage2.md#desktop-disable-and-delayed-recovery)
+and [save-exit evidence](../verification/stage2.md#pending-save-host-exit-and-fallback).
+One combined optimized build takes 73 seconds; formatting, all-targets Release
+Clippy with the existing dead-code exception and 106 ordinary tests pass, with
+20 opt-ins ignored. Focused lifetime review is clean. Product/package D779778C
+is unchanged; no owned process/build remains and no UAC or attended step ran.
+
+The preceding visual-family/pending-save batch completes
+in `V:/temp/netmap-visual-settings-20261024-c/` on preserved optimized test
+D124A0C6. Twelve source/native 1080p pairs complete without case failures;
+root inspected all twenty-four full-target images. Geography, outlines, fills
+and destination/highlight placement agree in these settled views, with the
+recorded establishment-guide/text differences. Actual pending-save/modal
+close/reopen passes, including the newer dialog surviving the older OK intent
+and actual committed disk preferences. See [visual evidence](../verification/matched-map.md#matched-visual-families-2026-10-24)
+and [pending-save evidence](../verification/stage2.md#settings-close-and-reopen-during-an-actual-pending-save).
+Formatting, all-targets Release Clippy with the existing dead-code exception
+and 106 ordinary tests pass, with 17 opt-ins ignored. Both focused reviews are
+clean. Product/package D779778C is unchanged. No owned process/build remains;
+no UAC, installation, registry change or attended input was used.
+
+The preceding local-lookup/text/Preview batch remains preserved on F47D775F in
+`V:/temp/netmap-acceptance-20261024-b/`; its evidence retains that binary's scope.
+
+Completed lifetime batch ownership: `connection_exploration` delivered the
+private Desktop driver/gate/wrapper; `desktop_native` extended the retained
+Settings driver/gate/wrapper and existing shutdown observation helpers. Lead
+owned shared registrations/hooks, documentation, build and runs. One combined
+build and focused review sufficed; no correction rebuild or failed retry. The
+roughly twenty-minute batch stayed within the 20–30 minute estimate. Native
+Desktop takes 3.52 seconds; the commit case takes 0.51 seconds; the fallback
+reaches its existing five-second deadline. These remain pre-storage save and
+controlled recovery-message proofs. Actual atomic-commit interruption, Explorer
+restart/topology, physical input/DPI and whole-product resources retain their
+separate scope. UAC/attended acceptance is deferred; memory acceptance is unmet.
+
+The current completion-evidence audit is finished at
+`V:/temp/netmap-integrated-review/current-completion-audit.md`. It accounts for
+both specifications, named journeys and all twenty optimization rows without
+repeating the completed product review. Its four ordinary-token priorities now
+have the scoped results linked above. The lower-memory objective, full matched
+larger scenes, complete product/collector totals, physical input and actual
+Windows setting delivery remain incomplete. Lead remains the sole builder and
+project-document editor.
+
+Completed batch ownership: `map_resource_checks` kept coupled navigation,
+temporal rendering and capture corrections together; `desktop_native` owned the
+dataset lifetime/availability driver; `hosting_settings` owned provider diagnosis
+and the native Categories-label correction; `connection_exploration` owned scoped
+component accounting. Lead owned shared seams, builds, runs and integration.
+Independent reviews overlapped implementation; correction reviews stayed within
+their affected contracts. Two coordinated Rust build rounds were necessary:
+native observations exposed a stale capture buffer and a provider association
+that a source-only review could not establish. No product architecture or
+framework was added. The roughly forty-minute map/dataset integration round
+stayed near its revised 35–45 minute estimate; the provider diagnosis exceeded
+its initial 10–15 minute standalone estimate and ran alongside that work.
+
+The next useful memory diagnostic is settled: installed WPR VirtualAllocation
+with WPA Commit Stack analysis, recorded before first native Device creation.
+Root confirms the installed profile list; Microsoft's recording workflow needs
+administrator access, so recording is deferred with UAC. No tracing/profiler,
+registry/service or installation action was attempted. D124's emitted PDB is
+preserved before subsequent builds; Release symbol quality remains unverified.
+See [allocation-attribution next step](../verification/matched-map.md#next-allocation-attribution-step).
+Do not rerun unchanged failed source arms or infer a cause from coarse counters.
+
+Real shared MMDB loading, two production local origin lookups and Scene work
+complete across a genuine map-HWND gap; current version/rows, fitted/nonfitted
+view invariants and exact accepted-model Present all pass. The native test exits
+0; its wrapper initially rejects Rust's prefixed output. The corrected parser's
+exact validation passes against the preserved logs/dataset, without a native
+rerun or rewriting the original Passed=false record. The affected existing
+Scene/target-gap case also passes. Late origin replies are tested after Ready;
+pending id/version guard discrimination remains the pure tests' scope.
+
+Settings' actual Preview command now passes with the packaged SCR and with the
+adjacent file absent. The owned saver covers both connected displays and exits
+0 on its owned WM_CLOSE; missing-file error delivery leaves Settings usable and
+preferences unchanged. An initial harness null-value failure is preserved;
+guarded process enumeration and full failure diagnostics precede the passing
+run. No Windows saver selection or installation is performed.
+
+The paired blank-presentation/text diagnostic measures 56.52/60.51 MiB private
+memory: the actual default DirectWrite overlay adds 3.99 MiB. Its small startup
+increment does not explain the earlier approximately 40 MiB map-contribution
+shortfall. Geometry/effects/runtime retention remain combined; resource
+acceptance stays open. See [text diagnostic](../verification/matched-map.md#production-text-startup-diagnostic-2026-10-24)
+and [local/Preview evidence](../verification/stage2.md#local-mmdb-and-origin-results-across-target-replacement).
+The updated rust-win32-ui guidance remains mapped onto the established owners.
+
+Completed batch ownership: `map_resource_checks` delivered the existing native
+fixture/wrapper and disposable reference capture helpers/wrapper; `desktop_native`
+delivered the private Host/Work pending-save fixture and wrapper. Lead owned
+shared registrations, integration, documentation, all builds and native runs.
+One reference build (91.6 seconds) and one optimized Rust test build (74 seconds)
+were sufficient; no correction rebuild or unchanged failed matrix rerun. The
+roughly 20-minute batch remained within its 20–30 minute estimate. Native checks
+take 23.63 seconds for the twelve images and 0.85 seconds for pending Settings.
+Source preparation/readback bounds remain twenty seconds per case. The static
+full-turn pairs normalize to the same viewport; they do not prove a gesture.
+Physical/system High Contrast, motion, input and resource acceptance remain open.
+On 2026-10-24 the user confirmed using the reread updated
+rust-win32-ui skill: apply its ownership, native-control, responsiveness and
+proportional-verification guidance to existing owners, without architectural
+changes merely to match its reference module names or a prototype.
+
+Previous completed batch on 727C2E3E is preserved in
+`V:/temp/netmap-discriminating-20261024-a/`: the memory trio and native shutdown
+results below retain that binary's scope.
+
+The fresh native control/presentation/full-map trio uses identical imported
+active-100/4K facts and 30/40/50-second endpoints. Mean private memory is
+2.21/56.76/186.37 MiB. Blank production device/presentation first use adds
+54.55 MiB; the full-map residual above it is 129.62 MiB. This is one diagnostic
+trio, not independent repetition or allocation-ownership proof. World, geometry,
+effects, text and differing frame behavior remain combined in that residual.
+See [presentation diagnostic](../verification/matched-map.md#device-and-presentation-diagnostic-2026-10-24).
+No renderer redesign is justified yet. The earlier never-map comparison remains
+terminal: three native pairs and two reference pairs complete, with reference
+treatment 3 failing before sampling. Its unmet private-memory objective and
+scope limits remain recorded; do not repeat that unchanged source failure.
+
+The actual Host WM_CLOSE path now passes with a genuinely outstanding WinHTTP
+body read: window removal 16 ms, Request cancellation and callback reclamation,
+cooperative Work finalization 73 ms. The separate cancellation-ignoring gate
+reaches the existing five-second fallback (4.712 ms deadline lateness); process
+exit/removal observations are recorded separately. All jobs use Work. The
+private plain-loopback setup does not prove HTTPS or dataset commit integrity.
+See [shutdown evidence](../verification/stage2.md#close-during-pending-io-and-uncooperative-work).
+
+Completed unattended batch: `map_resource_checks` exclusively owns the resource
+fixture/wrapper and adds a `text` diagnostic using the actual production speed
+overlay above the blank Device baseline. Use existing Map preparation with no
+World or arranged geometry; preserve the prior trio and keep startup attribution
+separate from allocation ownership. `connection_exploration` exclusively owns
+`app/native_checks.rs`, `app/work/native_checks.rs`, `host/native_lifetime.rs`
+and the native-host wrapper. Extend the existing map-target-gap journey to real
+local MMDB loading/lookup, versioned availability/origin/Scene acceptance and
+replacement presentation, using the retained owned city database. All jobs use
+Work; no public discovery, repeated download or product test mode is needed.
+Shared contracts, documentation, builds and native runs remain with lead.
+Independently, `hosting_settings` exclusively owns `tests/native-settings.ps1`
+for a focused opt-in Screen saver Preview journey, bypassing the completed
+general Settings loops. Use fresh owned copies of the frozen packaged EXE/SCR
+and a missing-SCR case. Invoke only Preview through the real native page/Work
+command; identify the exact copied SCR process and close only its owned HWNDs.
+Verify async success/failure, retained Settings usability and unchanged saved
+preferences. No global input, installation, selection or registry writes.
+The batch required two optimized builds: focused review strengthened exact
+model observation and prevented accidental public discovery in the local-only
+fixture. Script-only corrections addressed prefixed Rust output and nullable
+process enumeration. Preserve all failures; do not repeat the successful native
+lookup or completed resource matrices merely to obtain another green wrapper.
+Keep UAC and attended acceptance deferred. Next substantial unattended work is
+the missing matched visual families and remaining memory/component attribution,
+or pending-save/file-integrity integration; existing local load/lookup is not
+an actual city installation across the gap.
+
+The existing blocked dataset-replacement/restart check also passes on preserved
+727C2E3E in `V:/temp/netmap-native-integrity-20261024-a/`. It uses the retained
+126,998,165-byte city MMDB, preserves its exact hash, checks old reader/version
+and backup recovery after replacement failure, then successful reopen/retry.
+The isolated temporary directory is empty afterward. This checks file recovery,
+not interruption of an install during native Host shutdown. Older entries below
+retain batch history.
+
+Implementation is authorized through both planned stages. On 2026-10-23 the user
+explicitly authorized starting Stage 2 while Stage 1 acceptance remains open.
+This supersedes the strict implementation sequence, not either stage's acceptance
+criteria. Stop repeating unchanged failed reference runs; retain their evidence.
+The user will be away: defer every UAC prompt and user-attended check until the
+final acceptance checklist. Continue implementation and unattended checks; do
+not treat deferred checks as passes or launch another elevation meanwhile.
+
+Current handoff (2026-10-24): both stages' source is integrated. The final
+six-specialist review's seven consolidated findings are fixed, with a clean
+focused correction delta. Optimized tests, native host transitions, two-target
+renderer pixels/lifetime, Settings and installer compilation pass. The current
+100-observation resource journey completes all 36 phases and GPU timing batches
+without explicit timing gaps; neither stage's complete acceptance is
+claimed. [Stage 2 evidence](../verification/stage2.md) records the current binary,
+package, checks and remaining work. The batch assignments and earlier build/run
+entries below retain investigation history; do not restart completed batches
+or unchanged failed reference runs from those entries.
+
+Current unattended acceptance batch: `connection_exploration` owns only
+`tests/native-exploration.ps1` (real loopback rows/selection/retention), and
+`hosting_settings` owns only `tests/native-settings.ps1` (optional Stage 2 page
+journey through the existing harness). Lead owns documentation and runs both
+against frozen Release `2C0E2568809BC2DA91DA33E5E612BEB58DB1709983AA971DF6F0364EB55564C5`.
+No UAC, topology change, installation or Windows screen saver selection is part
+of this batch. The first exploration attempt has a failed UI Automation pattern
+precondition; preserve its evidence and inspect native accessibility before
+changing the harness. Desktop freshness's focused regression/review and 100
+native transitions pass; see Stage 2 evidence. Package the final binary after
+the acceptance batch, preserving earlier packages and failed run evidence.
+Hosting Settings journey now passes on that frozen binary (selected display,
+Cancel/Apply/reset, retained HWND/owner, Screen saver status/actions without
+invocation). Exploration proves cell text and live selection through fade but
+its subsequent live-grid scan raced row removal. Its harness is being corrected
+as one read/selection batch. The diagnostic also found the stock ListView proxy
+using zoom text as its accessible name; lead's native annotation fix uses the
+existing accessibility owner and has a clean focused review. Final Release
+`4C2D3A371FA18A6A12F7288BC7F0E329992DF546F924F45B0FF5AFD3E237295D`
+verifies that exact stock-provider name, live selection through fade and clearing
+on closure. The native socket driver then receives Windows error 10048 on
+same-tuple reconnect; ended/reconnect acceptance remains open. Preserve the failed
+run, without repeating unchanged socket-reuse attempts. Formatting, explicit x64
+all-targets Release Clippy and installer compilation pass; current package and
+scoped native results are recorded in Stage 2 evidence. No UAC or attended check
+was launched.
+Resumption: current product source and package are frozen. Do not repeat the
+completed Settings/100-cycle/resource matrices to re-establish their stated
+scope. Remaining unattended integration work is identified in
+`V:/temp/netmap-integrated-review/acceptance-gaps.md`: deterministic native
+ended/group selection where actual tuple reuse is unavailable, concurrent saver
+foreground suspension, and application replies crossing presentation gaps.
+Full resource/visual acceptance and the deferred UAC/attended checklist remain
+open. The latest exploration script's final change preserves partial evidence;
+both script parsers pass, without another native run.
+
+Completed native integration batch (2026-10-24): lead extracts the existing
+typed reply acceptance from queue polling into `Application::accept_reply`,
+without changing reply behavior. `connection_exploration` exclusively owns new
+test-only `app/native_checks.rs` and `host/native_exploration.rs`; lead registers
+their modules and one scoped test hook after normal Host/control creation. The
+ignored fixture uses accepted Connections/Scene replies, Model/Rows, actual map
+hits and native in-process ListView notifications for controlled geography,
+ended identity, pending lookup and expiry. It supplies no product fixture mode,
+alternate routing/grouping or ad hoc worker. Root alone builds/runs with a bounded
+owned-process watchdog. `desktop_native` exclusively owns new test-only
+`host/native_foreground.rs` and `tests/native-host-integration.ps1`, reusing that
+application fixture for the real `/s` child, actual foreground notifications,
+normal and modal-Settings drawing gates. Lead owns optional test-only actual
+Present-attempt and successful-frame observations in Map/Renderer/Device; they
+are absent from the product binary. Queue delivery across a target gap remains
+a separate acceptance item. Lead also removes redundant graphics-constructor
+objects that existed only to prove APIs already used by Outlines/Routes. This
+removes unused startup work; no measured memory saving is inferred from it.
+The focused native-integration review is clean after its observer correction.
+Formatting/Clippy pass, optimized suite `10664` passes 106 tests with 12 opt-ins
+ignored, and all three selected native checks pass in
+`V:/temp/netmap-native-host-integration-20261024-final/`. This covers controlled
+geographic/row identity and both split orientations, actual `/s` foreground
+suspension/resume in normal and Settings-modal operation, and retained renderer
+pixels/two-target lifetime. Final package product hash is
+`D779778C0C1AEE9C9D57D518516158B203255DD5BAB68B11087BDA9F61301880`;
+the test binary is `C7305C850126DCAE2C64935BB6A1FCE588CA88AE27DFF13BE9C542E5B1351FFB`.
+No UAC, installation or attended input was used. See Stage 2 evidence for scope.
+
+Resumption after that deliverable: source and current package are frozen, with
+no pending build/native process. The next resource measurement must change its
+control: `V:/temp/netmap-integrated-review/map-contribution.md` establishes that
+all 18 current visible/hidden private deltas are larger than the reference, but
+the warmed baselines and different geography/model lifetimes prevent whole-map
+attribution. Root independently verifies those pairs. Do not repeat the unchanged
+matrix or infer map savings from lower total process memory.
+`V:/temp/netmap-integrated-review/cold-control-seams.md` locates the exact early
+reference-capture and native pre-World branches for a fresh never-map control
+versus production-map treatment using the existing exported active-100/4K facts.
+That changed measurement is prepared only, not implemented/run. Keep the sibling
+TinyTorrent2 untouched; any reference fixture edit belongs to the disposable
+copy. Remaining endpoint/target-gap and genuinely pending operation checks also
+stay open, with UAC/attended acceptance deferred until the user returns.
+
+Current resource batch (2026-10-24): `map_resource_checks` owns only
+`src/map/renderer/resource_checks.rs`, `tests/native-map-resources.ps1` and the
+disposable reference capture files identified in `cold-control-seams.md`.
+Lead owns integration, documentation and all builds/native runs. Settled
+measurement contract: fresh never-map and production-map processes import the
+same accepted `active-100` facts and establish the same common host per app;
+sample at 30, 40 and 50 seconds after that common setup. Treatment must be ready
+before the first checkpoint or the run is incomplete. Record actual checkpoint
+lateness, UTC, process age, common-setup age and treatment-ready age. No forced
+GC, working-set trimming, screenshots, navigation or GPU-query setup before
+primary samples. Country MMDB/runtime startup remains common in the reference;
+world/model/renderer preparation belongs to treatment. Preserve source and binary
+provenance before changing the disposable fixture. First build/run one pair per
+application; if the comparison is valid, obtain three independent pairs, with
+alternating launch order and no invented numerical acceptance threshold.
+Expected work is one implementation/integration round plus focused fixes if
+needed, roughly 20–40 minutes including bounded native sampling. This is a
+fixture-only change; retain the frozen product/package and previous evidence.
+
+Independent lifetime fixture batch: `connection_exploration` owns only new
+test-only `host/native_lifetime.rs`, `app/work/native_checks.rs` and the existing
+`app/native_checks.rs` helper. Lead registers their private modules and scoped
+Host hook, with a cfgtest observation at the existing Scene acceptance decision.
+The fixture keeps the real application Endpoint alive, completes a registered
+Work job while the owned map target is absent, then creates a replacement target.
+It must prove current/stale Scene delivery counts, retained model/rows/view/clock
+and a successful replacement Present. Application remains the sole reply owner;
+controlled worker delivery does not establish genuine pending I/O cancellation.
+Lead batches its build with the resource fixture and runs only affected opt-ins.
+Both focused reviews are clean after removing per-frame diagnostic sampling
+from cold rendering. Reference Release capture build and Rust formatting,
+Clippy and optimized test compilation pass. Native lifetime/affected exploration
+and actual normal/modal saver checks pass on preserved test binary
+`5306F59B6DAC26F6EE30597E42CA332894A5411CDD5CAC7FA372E3B72A9B010A`;
+evidence is `V:/temp/netmap-cold-contribution-20261024-a/native-lifetime/`.
+The frozen product/package remains D779778C. The changed cold comparison is
+terminal with three native pairs, two reference pairs and one failed reference
+treatment; the fresh comparison above records its unmet private-memory objective.
+Reference prechange/current binaries are preserved beside their source and build
+provenance. The first sandboxed reference restore failed with NU1301; the
+ordinary-token build outside that tool sandbox succeeds. No UAC was used.
+
+Current Stage 2 batch: lead owns startup, Application/Work contracts, Host integration
+and all builds. Desktop/tray native operations and exploration native composition
+are independent modules with exclusive editing owners. Collection continues to
+have one owner; the collector-role seam must reuse it. Keep source snapshots and
+map grouping authoritative, and preserve application-lived replies across hosts.
+The pending elevated check is now terminal (session 44898, helper exit 1):
+`V:/temp/netmap-collector-resources-20261023/result.json` contains measured resource
+samples but reports test exit 101. Diagnose the failed assertion before claiming
+collection acceptance; no repeated elevation is pending.
 Current implementation ownership is split into independent batches; the lead
 alone builds and runs native checks against stable inputs. Shared contracts change
 only through the lead. Architectural prerequisites settle before dependent work.
-At each completed stage, one independent adversarial reviewer challenges its
-requirements, execution paths, integration, ownership and material complexity.
+At each completed feature batch or integration milestone, one independent
+adversarial reviewer challenges its requirements, failure paths, integration,
+ownership and material complexity.
 Compatible fixes return to the same reviewer within affected scope; widen only
 for concrete evidence. Independent implementation may continue while reviewed
 inputs stay stable. Reserve `code-review deep` and its six specialists for the
@@ -33,11 +487,210 @@ checks. Retain concise review outcomes and unresolved risks here.
 | --- | --- | --- |
 | Native collection correctness | Retained `etw_reference` agent: `src/connections.rs`, `src/connections/`, `src/app/work/trace_checks.rs`, `tests/native-trace.ps1` | Keep Snapshot/Publication and worker-launch contracts unchanged unless agreed with lead. Resolve System-context receive evidence without guessed process ownership; exact bounded native traffic and lasting identity/conservation checks. |
 | Matched reference fixture | Retained `reference_baseline` agent: disposable `V:/temp/netmap-reference-20261023-a71c/` only | Repair the loaded-scene/fixed-extent fixture and provide one build/run handoff. No edits to TinyTorrent2, no operation of its running engine, no builds or native runs. |
+| Matched NetMap resource checks | Fresh `map_resource_checks` agent: `src/map/renderer/resource_checks.rs` and `tests/native-map-resources.ps1` only | Match the reference scene facts, render extents and phases through the production renderer; provide test-only checks and one build/run handoff. Lead registers the test module and alone builds/runs it. No production behavior or dependency changes. |
+| Stage 1 adversarial review | Fresh `stage1_review` agent: read-only product inspection; `V:/temp/netmap-stage1-review/review.md` only | Review retained Stage 1 requirements, execution paths, integration, ownership and material complexity against stable product source. Separate defects from missing acceptance evidence; compatible fixes return to this reviewer. |
 | Application and native presentation integration | Lead: Application/Work/Host, persistence, resources, project docs and packaging scripts | Own shared interfaces, Release placement correction, integration, sole builds and all native execution. |
 
 The collection owner must not edit application/hosting contracts, and the lead
 must not edit collection-owned files while that batch is active. Reference work
 has no product-source dependency. Reuse each agent for related follow-ups.
+
+The completed Stage 1 integration review and focused correction delta are at
+`V:/temp/netmap-stage1-review/review.md`. Confirmed correction work includes
+per-kind destination markers and wide selection rings, capacity for a final
+placement write during simultaneous city/settings work, direct native detail
+and origin commands, and drawing suspension for inactive display/session.
+The completed review also identified transient hover on origin
+changes, selected-route rebuild priority and the missing transferring count.
+The lead has integrated these seven corrections, with durable marker/count,
+worker-admission, origin-hover and presentation-state regressions. The same
+reviewer has cleared the affected source contracts. The integrated Release suite
+passes 93 tests, with ten native/network opt-ins; the native renderer confirms
+three offset directional marker colors and High Contrast ink. Current Release
+Settings (including real keyboard input and Origin routing), five-launch exact
+placement and foreground navigation/detail-menu journeys pass. See
+[correction evidence](../verification/stage1-corrections.md) for scope and paths.
+Full stage acceptance remains pending. Matched resource checks are registered test-only
+work and do not add a product fixture mode.
+The correction review caught and removed a fatal startup dependency on optional
+session notifications. Microsoft also documents that the retained flip-model
+swap chain cannot return `DXGI_STATUS_OCCLUDED`; native session/display/suspend
+facts own drawing availability. This platform applicability correction removes
+the unused status-test mechanism, with notification failures shown as monitoring
+limitations while the map remains usable.
+
+The repaired reference fixture's Release build passed. Its first 100-peer run
+at `V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-b9ad491f-e5a2-4333-bfd3-adee277c4f59/`
+failed its idle-route assertion during a restore callback before the new renderer
+was prepared. The readiness correction was rebuilt. The next run at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-bbddd442-2be1-40e0-9d6b-528c96fd30c1/`
+completed 26 fitted memory/GPU phases with zero GPU-counter errors, including
+loaded 3840x2160 active scenes, before the source's Europe-zoom settling check
+timed out. The partial evidence is preserved. The subsequent run at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-517a2496-8ee7-4db3-9009-6c71fa8bb01f/`
+completed all 36 fitted memory/GPU phases for 100-connection idle, active and
+mixed scenes at 1920x1080 and 3840x2160, with zero counter errors. Two source
+4K navigation journeys still timed out with pending geometry rebuilds; they
+remain failed, independently of the completed fitted matrix.
+The XAML image capture was ancestor-clipped. A separate images-only run at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-52b0c8b2-e13d-4f20-88d9-7e467a61c533/`
+passed six full-target readbacks through the unchanged prepared renderer and
+its existing device/palette. The inspected 4K active image contains the full
+world. These images exclude XAML overlays and physical 4K presentation, and
+their allocations occur outside the resource measurements.
+
+The first matched native run at
+`V:/temp/netmap-matched-dark-100-20261023/` failed the active 4K Europe-4x warmup
+after 26 fitted phases. Shared outline deferrals were invalidating route glow
+and repeatedly spending the preparation allowance before remaining rebuilds
+could finish. The retained renderer now invalidates glow only when one of its
+own paths or halo realizations changes, while preserving the existing view,
+model, origin, palette and DPI invalidations. The same independent reviewer
+cleared this focused correction. The corrected run at
+`V:/temp/netmap-matched-dark-100-glowfix-20261023/` completed all 36 memory/GPU
+phases and six image readbacks; active 4K Europe zooms through 128x now settle
+under the unchanged deadline. The updated Release build, 93 ordinary tests,
+native renderer check and Clippy with the existing dead-code exception pass.
+The measured process totals are lower, but isolated map-private reduction and
+repeatability remain unproven because resource retention distorts subtraction.
+See [matched measurements](../verification/matched-map.md) for actual scopes,
+values, image inspection and the remaining acceptance gaps.
+The combined 100/200/1000-observation Dark reference batch at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-81a06b2d-6402-495a-a8ee-f4d8e1597761/`
+exited with failure after 356.9 seconds. It completed 60 memory/GPU phases
+(all 54 1080p phases and six idle-100 4K phases), then the source's fitted
+active-100 4K scene remained rebuild-pending for 610 prepared callbacks and hit
+the unchanged 20-second settling deadline. This is a source fitted-scene
+failure, in addition to its earlier high-zoom failures. Preserve the partial
+results; do not accept them as a completed full matrix. Remaining counts will
+use the existing per-count fresh-process entry to avoid accumulating all nine
+scenes in one process; source renderer and deadlines remain unchanged.
+Session `66705` is terminal. No builds run during resource sampling.
+The fresh-process 200-observation source run at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-eefc98c8-9b76-468f-a3e5-89f20b6b1205/`
+also exited with failure, after 315.2 seconds and 32 fitted phases. Its final
+mixed-200 4K navigation recovery could not settle at Fit (476 prepared callbacks,
+rebuild-pending at 20 seconds). Three failed navigation/recovery records remain
+in its captures. Session `93649` is terminal. The incomplete source run is not
+an eligible complete matched baseline for the native wrapper.
+
+The native GPU timing milestone is implemented in test-only Device hooks and
+the existing resource fixture. One focused independent review is clean; Release
+compilation, formatting, Clippy with the existing dead-code exception and 93
+ordinary tests pass. The GPU-only native validation at
+`V:/temp/netmap-main-gpu-dark-100-20261023/` completed all 54 batches, each with
+valid samples; 27 also have pending samples, explicitly excluded from quantiles.
+Main D2D drawing is bracketed before
+Present, excluding preparation and scanout. Raw GetData preserves S_FALSE;
+bounded one-read queries report pending/disjoint/invalid/error gaps explicitly.
+Queries run after all memory phases; `-GpuOnly` validates this instrumentation
+without repeating those phases or claiming a resource comparison. Product
+Release paths are unaffected by these cfg(test) additions.
+
+The user authorized Stage 2 implementation while these acceptance items remain
+open. Native timing results
+and their scope/coverage limitations are in the matched measurements record.
+No production reference renderer is changed and no timed-out navigation is
+accepted as passing parity. Full matched acceptance remains open.
+
+The existing 1000-observation Dark reference fixture at
+`V:/temp/netmap-reference-20261023-a71c/artifacts/evidence/Capture-peers-a4766e62-f515-41ae-bcc4-b60fac2449f1/`
+failed after 135.3 seconds and 24 fitted phases. Its active-1000 fitted 4K
+scene retained 146 destinations but remained rebuild-pending for 579 prepared
+callbacks through the unchanged 20-second settling deadline. Session `45661`
+is terminal; the original source is unchanged and no retry is currently running.
+GPU-only session `88261`, test build `76686` and the other failed source sessions
+are also terminal. The GPU pass collected
+1,742 valid intervals and 58 pending intervals, with no other query failures.
+Stage 2 implementation is now authorized; neither stage is accepted yet.
+
+The retained collection owner has extended its existing bounded local-only
+native Collector check with before/during/cleanup
+process resource samples and actual owned trace buffer statistics. The scope
+excludes UI/MMDB/GPU and the short child; observed publication maxima are not
+claimed as isolated allocation peaks. There is no new collector, workload or
+production publication interface. The existing resource fixture now uses the
+same official Windows PSAPI record rather than a handwritten memory ABI.
+The ProcessStatus SDK feature is a test-only dev dependency. Both handoffs are
+frozen and one focused independent review is clean. Release build `55117`,
+Clippy `22791` with the existing dead-code exception, formatting and 93 ordinary
+tests pass. The optimized test executable is
+`target/x86_64-pc-windows-msvc/release/deps/netmap-91ac044f5449248b.exe`, SHA-256
+`9936EE5BA3A79DEBE7562B1769920F49E5420D9E2534490932CC305F550718B4`.
+Formatting-only changes followed compilation; no source behavior changed.
+
+The previously authorized elevated local-only Collector resource check completed
+in session `44898` (helper 21920 exit 1, test 24152 exit 101), without timeout.
+Its result at `V:/temp/netmap-collector-resources-20261023/result.json` records
+1,511,424 bytes sampled private increase and 2,482,176 bytes working-set increase,
+with sixteen 16 KiB trace buffers. These are sampled process deltas, not isolated
+collector allocation peaks or a successful collection acceptance check. Delayed
+completed-TCP events exposed lifecycle ordering that leaves controlled bytes
+unattributed; the collection owner is fixing that retained behavior. All new UAC
+and user-attended checks are deferred until the final checklist as requested.
+
+Stage 2 first integration batch is in progress: native passive desktop/tray
+operations, shared-facts multi-display saver hosting and virtual connection
+exploration. Lead owns startup, Application/Work/Host and map target integration;
+`desktop_native` owns desktop/tray plus .scr packaging; `screensaver_host` owns
+`src/host/screensaver.rs`; `connection_exploration` owns `src/app/exploration.rs`
+and `src/app/work/scene.rs`; `etw_reference` retains Connections and the local
+read-only broker transport. Lead alone builds/runs stable inputs. No Stage 2
+runtime acceptance is claimed from source implementation.
+
+The first Stage 2 optimized test suite (session `85413`) passes 100 tests, with
+ten native/network opt-ins ignored. It includes the delayed completed-TCP,
+transport codec, launch and stable exploration identity regressions. SDK binding
+mismatches from the first check were corrected. Product Release build `15892`
+passed. Its 1,380,352-byte executable, SHA-256
+`73FC172EF92BCFAF49365429BDDBD0CB357DD469895F6E9A80A6757A89109F5C`,
+passes unattended native normal map/table commands with 225 ordinary-token rows,
+standalone `/c` with five categories and no map, and `/p` parent resize/teardown,
+all with clean exits. Evidence: `V:/temp/netmap-stage2-fourth-20261023/result.json`.
+Three preceding harness runs failed because the owned target was launched hidden
+and its first ShowWindow obeyed STARTUPINFO; the corrected harness explicitly
+shows its owned presentation. Preserve those failures; they are not product
+visibility regressions. The focused milestone
+review is at `V:/temp/netmap-stage2-review/review.md`; review fixes address
+standalone `/c` common controls, current rows before location, pending membership,
+Escape, filter-only refresh and preserving hover while reconciling row place.
+See [Stage 2 evidence and deferred checklist](../verification/stage2.md).
+
+The next integrated batch adds the explicit `--collector` role, same-logon
+read-only broker subscription and local fallback, source-epoch reset, bounded
+validated process-name caching, normal-host saver foreground suspension and
+worker-only monitor/Windows selection facts. Only the user's capture command
+requests elevation; startup, saver and preview never do. Broker lifetime follows
+remaining subscribers, with bounded initial/reconnect grace and existing cleanup
+fallback; it reads canonical committed retention preferences. The independent
+review at `V:/temp/netmap-stage2-review/collection-integration.md` found a native
+modal-loop delivery defect; it is corrected by posting foreground changes to the
+live owned window. No unresolved material source finding remains in that batch.
+Coordinator check `10058` and optimized suite `73582` pass: 101 tests, ten native
+opt-ins ignored. Release build `84039` passes (1,469,440 bytes, SHA-256
+`DCF3497584EB3961FC3C382ACACADAE868D67E2D7FAB4CDD3E16508AD980549B`). The integrated
+native smoke passes with 241 ordinary-token rows, standalone configuration and
+preview teardown. Elevated transport/runtime acceptance remains deferred.
+The desktop harness's unattended 100-cycle path stopped before its first cycle:
+the tool sandbox rejected tray IPC, and a normal-token run outside that sandbox
+then reached an invalid-handle failure. Both preserved the usable normal map.
+The following batch supplies native operation context and split-gutter dragging;
+Release `83070` then passes native structural checks: 100 desktop/window cycles
+(50 fitted, 50 at 128x), same map HWND, splitter capture/Escape, `/c`, `/p` and
+two-display `/s` coverage/owned key dismissal. Actual visual/icon/DPI and settled
+resource acceptance remain open. Final six-pass source review produced seven
+consolidated findings, all corrected in one batch with a clean six-pass focused
+delta. Optimized suite `40488` passes 105 tests (ten native opt-ins ignored), and
+Clippy all-targets passes. Release `16594` is 1,539,584 bytes, SHA-256
+`E02868EBF9937F69730BCDDAEB3A89FBE204249A908F7252AFC18F252F9A735D`; the full native
+hosting journey repeats successfully, as does the Settings draft/search/save/
+failure/reflow/restart journey. Two-target native pixels/lifetime and final
+packaging pass. The updated matched-resource journey (`49903`) also completes;
+its scope remains deterministic map-only testing, not full product-memory or
+physical presentation acceptance. Details and evidence paths are in
+[Stage 2 integration evidence](../verification/stage2.md).
+Reread and adopted the updated Rust Win32 UI skill on user request;
+existing project ownership remains authoritative.
 
 The native graphics/collection proof in Development step 1.1 remains open while
 independent map/navigation and location work progresses through steps 1.2–1.4.
@@ -99,8 +752,14 @@ passed normal/maximized bounds, minimized-close restoration and off-screen
 recovery; see [window evidence](../verification/window.md). Formal review of this
 retained implementation is deferred to the substantial deliverable boundary.
 The first Release placement run exposed zero native flags on minimized close;
-the lead's WM_SIZE-based restoration correction is implemented and awaits the
-combined build/native rerun. Earlier Debug success is not Release acceptance.
+the lead's WM_SIZE-based restoration correction passed the integrated Release
+five-launch journey with exact requested bounds. Native foreground navigation
+also passed on the live map. The latest ordinary suite passes 87 tests; nine
+native checks remain explicitly opt-in. Unmatched System TCP traffic is now
+reported per interval without guessed ownership or loss of captured totals.
+The integrated local-only Collector check passed. Matched resource and remaining
+platform acceptance still await evidence; earlier narrow passes do not establish
+the complete stage.
 
 Bounded native checks for this milestone answer whether the specified ETW source
 can observe controlled loopback/external traffic under the current rights, and

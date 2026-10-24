@@ -4,6 +4,21 @@ $ErrorActionPreference = 'Stop'
 
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $BuildTarget = 'x86_64-pc-windows-msvc'
+$RuntimeAssets = @('world.bin', 'country.mmdb', 'Attribution.md')
+
+function Copy-ProjectAssets {
+    param([Parameter(Mandatory)][string] $Destination, [switch] $AllowMissing)
+
+    foreach ($asset in $RuntimeAssets) {
+        $source = Join-Path $ProjectRoot "assets/$asset"
+        if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
+            if ($AllowMissing) { continue }
+            throw "Missing assets/$asset. Prepare the documented distribution assets."
+        }
+        New-Item -ItemType Directory -Path $Destination -Force | Out-Null
+        Copy-Item -LiteralPath $source -Destination $Destination
+    }
+}
 
 function Invoke-Cargo {
     param([Parameter(Mandatory)][string[]] $Arguments)

@@ -1,7 +1,7 @@
 # NetMap
 
 A lightweight native Windows app that visualizes your PC's TCP/UDP connections
-and live traffic on a world map, with planned desktop and screensaver modes.
+and live traffic on a world map, with desktop background and screensaver modes.
 Built in Rust with Win32, porting TinyTorrent2's map without its UI framework.
 **Current state: implementation in progress.**
 The executable draws the bundled world in a native GPU window and loads its
@@ -9,8 +9,9 @@ geography away from the UI thread. Mouse wheel/double-click zoom, drag pan,
 Plus/Minus, Ctrl+Arrow pan and Ctrl+0 Fit work with native menus and controls.
 The Location menu downloads/updates optional city data, reports progress and
 supports cancellation. Installed country/city data uses read-only memory mapping.
-File > Settings opens a native searchable dialog with Map, Connections and
-Location pages, draft resets, validation and asynchronous Apply/OK persistence.
+File > Settings opens a native searchable dialog with Map, Connections,
+Location, Desktop and Screen saver pages, draft resets, validation and
+asynchronous Apply/OK persistence.
 Its city-data actions use the same application operations as the Location menu.
 Automatic origin uses a bounded public-address HTTPS request and local location
 lookup; a saved Manual origin suppresses discovery. Origin changes preserve the
@@ -19,8 +20,20 @@ are integrated. The map follows Windows appearance/motion settings, shades
 country activity and displays whole-PC speeds in the saved corner.
 Window position, restored bounds and maximized state survive restart separately
 from editable preferences. The map exposes a stable accessible name and current
-description through the native HWND accessibility proxy. Production
-ETW proof and complete map acceptance remain in progress. Evidence is recorded in
+description through the native HWND accessibility proxy. A native virtual
+connection table exposes the same observations, including unplottable endpoints
+and their reasons. Map/table choices and a draggable split preserve native focus
+and selection behavior. Desktop mode is opt-in, with Open map and Exit in the
+notification area. The same executable is packaged as `netmap.scr` with `/s`,
+`/p` and `/c` launch paths.
+
+Whole-PC traffic collection requires Windows tracing rights. Explicitly choosing
+the capture command requests elevation for the same collector in a separate
+process; ordinary viewers subscribe through a restricted read-only local pipe.
+Without tracing rights or a broker, NetMap shows TCP table observations and
+reports unavailable traffic rates/UDP coverage. Startup and saver activation
+never request elevation. Production ETW/broker proof and complete visual/resource
+acceptance remain in progress. Evidence is recorded in
 [verification evidence](docs/verification/native-source.md).
 
 The build has one Cargo package, native `windows` bindings and the small
@@ -118,6 +131,33 @@ observed results and remaining acceptance work.
 The optional `-AutomaticOrigin` also exercises real public-address discovery,
 local lookup, manual supersession and close/restart. It makes external HTTPS
 requests but changes no adapters or routes; see [Origin evidence](docs/verification/origin.md).
+Optional `-Hosting` checks Desktop draft/Cancel/Apply/reset on a connected display
+and the Screen saver page's status/commands, without invoking saver actions.
+
+The Stage 2 journey checks owned window commands, split capture/rollback,
+configuration and preview teardown. Optional desktop and full-screen checks are
+visible but do not install/select a saver, request UAC or inject global input:
+
+```powershell
+pwsh -File .\tests\native-stage2.ps1 -Executable <built-netmap.exe> -EvidenceDirectory <new-output-directory> -Desktop -FullScreen
+```
+
+See [Stage 2 evidence](docs/verification/stage2.md) for what these checks establish
+and the remaining attended, elevated and resource acceptance work.
+
+The native integration fixture uses controlled accepted observations through the
+real Host/ListView/map owners. It also launches an owned full-screen saver briefly
+to verify actual foreground drawing suspension and Settings-modal delivery:
+
+```powershell
+cargo test --locked --release --target x86_64-pc-windows-msvc --no-run
+pwsh -File .\tests\native-host-integration.ps1 -TestExecutable <built-test.exe> -Application <built-netmap.exe> -EvidenceDirectory <new-output-directory>
+```
+
+Use the test executable reported by Cargo. This ordinary-token check has bounded
+process cleanup and runs no installation, UAC or physical-input operation. Its
+fixture code is absent from the product binary; live collector/MMDB and resource
+acceptance remain separate checks.
 
 ## Package and installer
 

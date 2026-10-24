@@ -7,4 +7,6 @@ $arguments = @('build', '--locked', '--target', $BuildTarget)
 if ($Configuration -eq 'Release') { $arguments += '--release' }
 Invoke-Cargo -Arguments $arguments
 $project = Get-Project
-Join-Path $project.TargetDirectory "$BuildTarget/$($Configuration.ToLowerInvariant())/$($project.Name).exe"
+$directory = Join-Path $project.TargetDirectory "$BuildTarget/$($Configuration.ToLowerInvariant())"
+Copy-ProjectAssets -Destination (Join-Path $directory 'assets') -AllowMissing
+Join-Path $directory "$($project.Name).exe"

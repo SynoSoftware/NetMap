@@ -213,9 +213,92 @@ Native samples now include attributed incoming application traffic. This run's
 total traffic was far smaller than the earlier busy run, so its lower
 unattributed fraction is not a matched high-load comparison. Full physical-
 interface attribution acceptance remains open. The integrated ordinary suite
-passes 86 tests, with nine explicit native checks ignored.
+passes 87 tests, with nine explicit native checks ignored.
+
+The opt-in external check at `V:/temp/netmap-external-source-20261023/` passed
+exact owned TCP bytes (222 received, 61 sent) through both Raw and Collector.
+Its receive events used the application's PID, not System. The follow-up at
+`V:/temp/netmap-system-table-match-20261023/` found no TCP-table match in either
+orientation for 2,628,580 passive System receive bytes. This does not justify
+reclassifying them as UDP or assigning them to the torrent process.
+
+The product now reports unmatched System TCP bytes as an explicit per-interval
+attribution limitation, retaining captured aggregate totals/rates. The condition
+clears after each publication. The integrated local-only Collector check passed
+at `V:/temp/netmap-collector-integrated-20261023/`, owned PID 26076, exit 0, no
+timeout, exact own/short-child TCP/UDP facts and no external request. The probe
+now requires the literal environment value `1` for external work; an earlier
+empty-value/presence bug had enabled the small HEAD request without `-External`.
+Its regression rejects absent, empty and false values. Unknown System and scoped
+IPv6 attribution remain explicit limitations, not claimed socket identities.
+
+## Resumed elevated regression (2026-10-24)
+
+`V:/temp/netmap-elevated-acceptance-20261024-a/collector-regression/result.json`
+records both Raw and Collector passing on preserved optimized test
+`5680939D1C26C4FBF94AF6CEBCAC18A85D68F6DABBD011C811CBE2F4E943DFEF`.
+The approved elevated helper runs the unchanged eight-second checks separately;
+neither times out and both exit 0. External work is false. These assert exact
+owned IPv4/IPv6 TCP/UDP directional bytes, short-lived child facts, measured rates
+and retained TCP identity under the existing fixture scope. The actual ordinary
+viewer/elevated broker and all-process resource contracts remain separate.
+
+The integrated Collector's whole test process is 1,904,640 private bytes before
+construction, 3,407,872 after startup, and 6,651,904 at its sampled publication
+maximum. After cleanup it is 2,158,592 bytes, 253,952 above baseline. Sampling is
+not continuous and includes harness/workload/runtime retention; this is not
+isolated collector ownership or a total product-memory acceptance claim.
+Reported ETW buffers remain seventeen × 16 KiB (278,528 bytes); published whole-PC
+observation counts range from 171 to 236. The owned child is outside that process
+scope. Trace buffers and process Private Bytes remain distinct categories.
 
 ## Remaining integration
+
+The resumed broker attempt is retained separately from Raw/Collector success.
+Run `netmap-native-broker-20261024-a` stops before UAC because the wrapper uses
+WindowsIdentity.Groups, which omits the logon SID. Native TokenLogonSid confirms
+one group, and the wrapper changes to the product's documented native query.
+Run b reaches matching ordinary/elevated logon, then hits three wrapper `==`
+predicates (PowerShell requires `-eq`); its collector also exits 1 immediately.
+Both failures remain preserved. Corrected run c, using diagnostic product
+57F3A350, reports Windows error 24 through the retained standard stderr path.
+The production token helper reports an eight-byte padded buffer for the
+four-byte TokenElevation record. A direct read-only native comparison succeeds
+with length four and fails with length eight/error 24; TokenLogonSid works with
+either its exact forty-four or padded forty-eight bytes. The first correction
+still fails in preserved test 4AD37A26: TokenElevation also rejects a null-buffer
+size query with error 24 while reporting four required bytes. The final helper
+uses a direct typed TOKEN_ELEVATION query and keeps the variable-length aligned
+query only in logon_sid. Preserved optimized test 5B6F4ADF passes the native
+current-token regression and all 107 ordinary tests (27 native opt-ins ignored).
+This is an ABI query defect, not an authorization-policy failure.
+
+Run `V:/temp/netmap-native-broker-20261024-d/` proceeds after user-approved
+consent, using production 1EF9FF0A and test 5B6F4ADF. It proves actual measured
+broker facts in all nine native table columns, but its full-screen saver exits.
+The wrapper now launches the visible saver after ordinary startup, preserving
+normal dismissal behavior. Run e cannot start its UAC helper inside the command
+sandbox (0xc0000142); no collector starts. Run f outside that sandbox uses
+packaged A461327D and test 5B6F4ADF: ordinary GENERIC_WRITE is rejected, actual
+saver-only subscription survives 11.08 seconds, and collector 1 exits naturally
+7.13 seconds after the saver process exits. Its replacement-source assertion
+then fails on initial incomplete coverage. The bounded check now waits for
+complete coverage, while still checking exact selection clearance on each new
+epoch publication.
+
+Preserved test 7925B3A0 passes 107 ordinary tests. Run g exposes another fixture
+lifetime error: it finishes all Work while deliberately retaining accepted UI
+facts, which can keep the retirement worker alive until the five-second fallback.
+The existing fixture now transfers retirement join handles to the continuing
+Work owner before finishing the old source. Product lifecycle behavior is
+unchanged. Optimized test AA0DEEBB builds in 119 seconds, passes 107 ordinary
+tests, and is preserved with its PDB under
+`V:/temp/netmap-broker-retirement-20261024/`. Formatting/all-targets Release Clippy
+pass. This last correction still needs its focused native check. Full
+broker/source acceptance remains incomplete; preserve the partial successes and
+all failed runs without treating them as a complete pass. The user requests
+minimal screen disruption, so the remaining visible journey waits for an
+announced attended batch.
 
 Prove the implemented process lifecycle/rundown correlation alongside the current
 census, using the owned ETW source and raw-QPC epoch described in

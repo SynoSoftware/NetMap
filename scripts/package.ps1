@@ -3,9 +3,8 @@
 param([switch] $Scaffold)
 
 . (Join-Path $PSScriptRoot 'common.ps1')
-$requiredAssets = @('world.bin', 'country.mmdb', 'Attribution.md')
 if (-not $Scaffold) {
-    foreach ($asset in $requiredAssets) {
+    foreach ($asset in $RuntimeAssets) {
         if (-not (Test-Path -LiteralPath (Join-Path $ProjectRoot "assets/$asset") -PathType Leaf)) {
             throw "Missing assets/$asset. Prepare the documented distribution assets, or use -Scaffold for a development-only package."
         }
@@ -21,15 +20,11 @@ $output = Join-Path $ProjectRoot "artifacts/packages/$generation"
 $payload = Join-Path $output $name
 New-Item -ItemType Directory -Path $payload | Out-Null
 Copy-Item -LiteralPath $executable -Destination (Join-Path $payload 'netmap.exe')
+Copy-Item -LiteralPath $executable -Destination (Join-Path $payload 'netmap.scr')
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'README.md') -Destination $payload
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'installer/notices') -Destination $payload -Recurse
 
-if (-not $Scaffold) {
-    $assetDirectory = New-Item -ItemType Directory -Path (Join-Path $payload 'assets')
-    foreach ($asset in $requiredAssets) {
-        Copy-Item -LiteralPath (Join-Path $ProjectRoot "assets/$asset") -Destination $assetDirectory.FullName
-    }
-}
+Copy-ProjectAssets -Destination (Join-Path $payload 'assets') -AllowMissing:$Scaffold
 $archive = Join-Path $output "$name.zip"
 Compress-Archive -LiteralPath $payload -DestinationPath $archive
 [pscustomobject]@{

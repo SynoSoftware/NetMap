@@ -1,0 +1,8 @@
+NetMap preferences 1
+detail=countries
+speeds=bottom-right
+bright=10
+fade=20
+origin=manual
+latitude=0
+longitude=0

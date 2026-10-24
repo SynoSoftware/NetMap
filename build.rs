@@ -13,7 +13,9 @@ fn main() {
         assert_eq!(words.len(), 3, "resource IDs must be numeric defines");
         let name = words[1];
         assert!(
-            name.starts_with("IDD_") || name.starts_with("IDC_"),
+            ["IDD_", "IDC_", "IDR_", "IDM_"]
+                .iter()
+                .any(|prefix| name.starts_with(prefix)),
             "unsupported resource ID: {name}"
         );
         let value: u16 = words[2].parse().expect("resource IDs must fit u16");

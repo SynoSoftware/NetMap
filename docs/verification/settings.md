@@ -3,6 +3,64 @@
 2026-10-23. This is implementation evidence, not stage 1 acceptance. The
 [Settings specification](../plans/settings.md) remains the behavior authority.
 
+## Native accessibility provider check
+
+2026-10-24. `V:/temp/netmap-settings-uia-20261024-h/accessibility-result.json`
+passes on release `A60AF2EB81D437EBBDB42729E6BE5F0D337DAA07F512C42F0C9C10F94CC76C19`
+(1,540,608 bytes). A separate bounded STA client reads the stock Windows UI
+Automation providers; this adds no product framework or runtime dependency.
+All seven checkpoints pass across all five retained lazy pages: shell/category
+names and types, combo/button names, duration ValuePattern, automatic-origin
+coordinate disabling, Desktop TogglePattern, Screen saver action names and
+search/no-match/Clear with the edited raw duration retained. Explicit actions
+are not executed. Cancel preserves the preferences hash and the parent exits 0.
+
+The check exposed a real native label-association defect. The category list's
+window title and MSAA name were both Categories, while UI Automation chose
+Search settings as LabeledBy and Name. A visible native Categories Static now
+immediately precedes the ListView. The final provider reports Categories for
+both Name and LabeledBy; the ineffective dialog annotation/COM plumbing is
+removed. Wide and compact layouts reserve the label above the existing native
+scrolling list without moving the page or footer.
+
+Attempts a–g remain preserved under the corresponding
+`V:/temp/netmap-settings-uia-20261024-*/` directories. The first two fail during
+client initialization; the corrected stock registration uses a declared C#
+frame to avoid the installed Framework loader's dynamic-stack null dereference.
+Subsequent diagnostics isolate the label defect and retain their failed status;
+they are not alternate successful acceptance runs. The focused review and
+correction deltas are clean in
+`V:/temp/netmap-integrated-review/settings-accessibility-review.md`.
+This is provider evidence; physical keyboard, screen-reader use, mixed DPI and
+actual system appearance changes remain separate acceptance work.
+
+## Settings reopen resource follow-up
+
+2026-10-24. `V:/temp/netmap-settings-lifetime-20261024-j/lifetime-result.json`
+passes its bounded diagnostic on unchanged release A60AF2EB. The owned parent
+is visible at all 27 samples. Every open visits all five lazy pages and closes
+with Cancel: one initial cycle, three warm-ups, twenty measured cycles, then
+one- and two-second closed idle samples. Preferences remain unchanged, stderr
+is empty and the parent exits 0; the whole journey takes 13.30 seconds.
+
+Process handles remain 482 throughout the twenty measured cycles and final
+idle. GDI is 24 for measured cycles 1–18 and 25 for 19–20, then 24/25 during
+idle. USER varies between 42 and 44 during measured cycles and drops to 41/40
+in idle. This does not reproduce the earlier three-reopen increase as sustained
+per-dialog GDI growth; no production lifetime change is justified by these data.
+The exact last-five-count plateau flag is false because of this bounded
+variation; the diagnostic's pass does not assert resource acceptance.
+
+Private bytes rise 3,321,856 from the warmed sample to the last measured cycle
+and 3,743,744 through final idle (3.57 MiB). Connection facts and renderer warming
+are live, so this process-level increase is not attributed solely to Settings.
+Leak freedom and fixed-fact allocation acceptance remain open. The preceding
+run i kept its parent hidden: all measured GDI/USER/handle counts are constant
+at 24/37/434, but that narrower isolation is not a visible-window baseline.
+Both raw runs remain preserved. The visible-show correction and Lifetime mode
+have clean focused review in
+`V:/temp/netmap-integrated-review/resource-followup.md`; no product code changes.
+
 ## Adapted source
 
 Read-only Goz reference: `../TinyTorrent2/3rdParty/goz`, observed nested HEAD

@@ -123,9 +123,25 @@ proves native property exposure/readback, not screen-reader use or physical key
 input. The retained accessibility review is at
 `V:/temp/netmap-accessibility-review/review.md`.
 
+## Live foreground navigation
+
+The refreshed native journey passed on the interactive desktop at
+`V:/temp/netmap-navigation-live-final-20261023/`, owned PID 9544, exit 0. It
+exercised physical mouse capture and native pan cursor, Escape cancellation,
+opposite Ctrl+arrow pans, keyboard/menu/double-click zoom, native Tab/Fit focus,
+wheel delivery with Fit focused, and Ctrl+0. HelpText now includes geographic
+centre and zoom from Viewport. The check compares those viewport facts, while
+retaining screenshots as visual evidence; changing live markers no longer make
+pan/cancel checks fail spuriously.
+
+The check also distinguishes minimum zoom from a fitted view: 1x may retain a
+geographic offset, as in the reference. Fit explicitly resets that offset. An
+earlier sandboxed launch could not obtain foreground focus; the interactive
+owned-window run above is the accepted input evidence.
+
 ## Still unverified or incomplete
 
-Physical keyboard/mouse/touchpad and mixed-DPI transitions; actual tooltip display
+Physical precision-touchpad and mixed-DPI transitions; actual tooltip display
 and screen-reader behavior; real High Contrast/motion setting changes;
 dense-source visual/resource comparisons; and complete live
 ETW/UDP/process-lifecycle coverage. Native text readback alone is not complete

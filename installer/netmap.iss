@@ -29,7 +29,11 @@ DisableProgramGroupPage=yes
 OutputBaseFilename=NetMap-setup
 
 [Files]
-Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Both entry names use one compiled application and the same adjacent assets.
+; Inno owns their normal per-user installation and uninstall removal.
+Source: "{#PayloadDir}\netmap.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#PayloadDir}\netmap.scr"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#PayloadDir}\*"; DestDir: "{app}"; Excludes: "netmap.exe,netmap.scr"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{autoprograms}\NetMap"; Filename: "{app}\netmap.exe"; WorkingDir: "{app}"

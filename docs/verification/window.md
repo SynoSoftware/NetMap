@@ -32,7 +32,7 @@ The native fixture simulates removed-monitor coordinates; it does not change
 Windows display configuration. Formal review awaits the substantial deliverable
 boundary.
 
-## Release follow-up in progress
+## Release correction and verification
 
 The initial Release package compiled with Inno Setup and correct copied asset
 hashes, but its minimized-close journey exposed a real restoration defect:
@@ -44,5 +44,15 @@ The Debug pass above does not establish Release correctness.
 Host now retains the last non-minimized WM_SIZE state rather than relying on
 those flags. The native journey also waits for startup collection readiness
 before changing placement, checks the requested bounds explicitly, and preserves
-phase diagnostics on failure. This correction awaits the combined build/native
-run while the collection owner completes its independent source batch.
+phase diagnostics on failure. A fixture defect was also corrected: assigning
+fields on the nested RECT in PowerShell mutated a boxed copy. The fixture now
+assigns the complete rectangle and checks the requested coordinates explicitly.
+
+The integrated Release run at
+`V:/temp/netmap-release-placement-bounds-20261023/` passed all five launches with
+normal bounds exactly `(100,100,1000,700)` retained through normal/maximized and
+minimized-close restart. Off-screen recovery returned a visible rectangle at
+`(2540,792,3440,1392)`. All five processes exited 0 with empty stderr and unchanged
+preference hashes. The integrated ordinary suite passes 87 tests, with nine
+explicit native checks ignored. Physical mixed-DPI and end-session gates remain
+as stated above.
